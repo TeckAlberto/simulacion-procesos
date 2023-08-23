@@ -1,9 +1,9 @@
 import { useContext, createRef, RefObject } from 'react'
 import { SimulationContext } from '../context/SimulationProvider'
-import { SimulationContextType } from '../context/types'
+import { SimulationContextType, Lot } from '../context/types'
 export default function Process() {
 
-  const { lots, setLots } = useContext(SimulationContext) as SimulationContextType
+  const { lot, setLot, lots, setLots } = useContext(SimulationContext) as SimulationContextType
 
   const nameRef: RefObject<HTMLInputElement> = createRef()
   const operationRef: RefObject<HTMLInputElement> = createRef()
@@ -12,23 +12,34 @@ export default function Process() {
   const val2Ref: RefObject<HTMLInputElement> = createRef()
 
 
- const handleSubmitProcess = (e: React.FormEvent<HTMLFormElement>): void => {
+  const handleSubmitProcess = (e: React.FormEvent<HTMLFormElement>): void | boolean => {
       e.preventDefault()
 
-     
-      console.log('Send...', nameRef.current?.value)
-    }
+      const lotData: Lot = {
+        id: crypto.randomUUID(),
+        name: nameRef.current?.value.toString(),
+        operation: operationRef.current?.value.toString(),
+        time: Number(timeRef.current?.value),
+      }
+
+      // if(lot >= 4){
+        
+      // }
+      console.log('Send...', lotData)
+  }
+
+  
   return (
-    <div className="p-4 mx-auto mt-10 bg-white rounded shadow-lg">
-      <form noValidate onSubmit={handleSubmitProcess}>
+    <div className="w-1/2 p-4 mx-auto mt-10 bg-white rounded-lg shadow-lg">
+      <form className='' noValidate onSubmit={handleSubmitProcess}>
 
         <div className="mb-5">
-          <label className='text-slate-800 text-xl font-bold' htmlFor="name">Nombre del Programador</label>
+          <label className='text-xl font-bold text-violet-600' htmlFor="name">Nombre del Programador</label>
 
           <input 
             name="name" 
             placeholder='Nombre del programador'
-            className='block w-full my-1 p-2 bg-gray-50 border focus:border-indigo-900 border-indigo-600'
+            className='block w-full p-2 my-1 border rounded-md bg-gray-50 focus:border-indigo-700 focus:outline-none'
             id="name" 
             type="text" 
             formNoValidate
@@ -37,10 +48,12 @@ export default function Process() {
         </div>
 
         <div className="mb-5">
-          <label className='text-slate-800 text-xl font-bold' htmlFor="operation">Operacion</label>
+          <label className='text-xl font-bold text-violet-600' htmlFor="operation">Operacion</label>
 
           <input 
             name="operation" 
+            placeholder='Operacion'
+            className='block w-full p-2 my-1 border rounded-md bg-gray-50 focus:border-indigo-700 focus:outline-none'
             id="operation"  
             type="text" 
             formNoValidate
@@ -49,10 +62,12 @@ export default function Process() {
         </div>
 
         <div className="mb-5">
-          <label className='text-slate-800 text-xl font-bold' htmlFor="val1">Valor 1</label>
+          <label className='text-xl font-bold text-violet-600' htmlFor="val1">Valor 1</label>
 
           <input 
             name="val1" 
+            placeholder='Valor 1'
+            className='block w-full p-2 my-1 border rounded-md bg-gray-50 focus:border-indigo-700 focus:outline-none'
             id="val1" 
             type="number"
             formNoValidate
@@ -61,10 +76,12 @@ export default function Process() {
         </div>
 
         <div className="mb-5">
-          <label className='text-slate-800 text-xl font-bold' htmlFor="val2">Valor 2</label>
+          <label className='text-xl font-bold text-violet-600' htmlFor="val2">Valor 2</label>
 
           <input 
             name="val2" 
+            placeholder='Valor 2'
+            className='block w-full p-2 my-1 border rounded-md bg-gray-50 focus:border-indigo-700 focus:outline-none'
             id="val2" 
             type="number"
             formNoValidate
@@ -73,10 +90,12 @@ export default function Process() {
         </div>
 
         <div className="mb-5">
-          <label className='text-slate-800 text-xl font-bold' htmlFor="time">Tiempo estimado</label>
+          <label className='text-xl font-bold text-violet-600' htmlFor="time">Tiempo estimado</label>
 
           <input 
             name="time" 
+            placeholder='Tiempo estimado'
+            className='block w-full p-2 my-1 border rounded-md bg-gray-50 focus:border-violet-700 focus:outline-none'
             id="time" 
             type="number"
             formNoValidate
@@ -84,7 +103,7 @@ export default function Process() {
           />
         </div>
 
-        <input type="submit" className='p-3 text-sm text-white uppercase bg-indigo-600 rounded hover:bg-indigo-800' value="Agregar Proceso"/>
+        <input type="submit" className='w-full p-3 text-sm text-white uppercase bg-indigo-600 rounded cursor-pointer hover:bg-indigo-800' value="Agregar Proceso"/>
         
 
       </form>

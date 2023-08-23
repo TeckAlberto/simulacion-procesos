@@ -10,13 +10,14 @@ export const SimulationContext = createContext<SimulationContextType | undefined
 
 export function SimulationProvider({ children }: Props) {
   
-    const [lots, setLots ] = useState<Array<Lot>>([])
+    const [ lot, setLot ] = useState<Array<Lot>>([])
+    const [ lots, setLots ] = useState<Array<Array<Lot>>>([])
 
   
     return (
 
         <SimulationContext.Provider
-          value={{ lots, setLots}}
+          value={{ lot, setLot, lots, setLots}}
         >
           {children}
         </SimulationContext.Provider>

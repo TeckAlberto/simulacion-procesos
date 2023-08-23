@@ -1,12 +1,14 @@
 export type Lot = {
-    id: number,
-    name: string,
-    operation: string,
-    time: number
+    id: `${string}-${string}-${string}-${string}` | undefined,
+    name: string | undefined,
+    operation: string | undefined,
+    time: number | undefined
 }
 
 export type SimulationContextType = {
-    lots: Array<Lot>,
-    setLots: (value: Array<Lot>) => void,
+    lot: Array<Lot>,
+    setLot: (value: Array<Lot>) => void,
+    lots: Array<Array<Lot>>,
+    setLots: (value: Array<Array<Lot>>) => void,
 }
 
