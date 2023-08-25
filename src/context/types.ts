@@ -12,5 +12,7 @@ export type SimulationContextType = {
     setLot: (value: Array<Lot>) => void,
     lots: Array<Array<Lot>>,
     setLots: (value: Array<Array<Lot>>) => void,
+    timeGlobal: boolean
+    setTimeGlobal: (value: boolean) => void
 }
 

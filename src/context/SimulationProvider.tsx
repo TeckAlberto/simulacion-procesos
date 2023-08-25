@@ -12,12 +12,20 @@ export function SimulationProvider({ children }: Props) {
   
     const [ lot, setLot ] = useState<Array<Lot>>([])
     const [ lots, setLots ] = useState<Array<Array<Lot>>>([])
+    const [ timeGlobal, setTimeGlobal ] = useState<boolean>(false)
 
   
     return (
 
         <SimulationContext.Provider
-          value={{ lot, setLot, lots, setLots}}
+          value={{ 
+            lot, 
+            setLot, 
+            lots, 
+            setLots, 
+            timeGlobal, 
+            setTimeGlobal
+          }}
         >
           {children}
         </SimulationContext.Provider>
