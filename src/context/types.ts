@@ -1,7 +1,9 @@
 export type Lot = {
-    id: `${string}-${string}-${string}-${string}` | undefined,
-    name: string | undefined,
-    operation: string | undefined,
+    id: `${string}-${string}-${string}-${string}` | undefined
+    name: string | undefined
+    operation: string | undefined
+    val1: number
+    val2: number
     time: number | undefined
 }
 

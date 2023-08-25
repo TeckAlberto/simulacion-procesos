@@ -6,7 +6,7 @@ import Process from './components/Process';
 export default function App() {
   const [process, setProcess] = useState(false);
   //const [error, setError] = useState(false);
-  const { lots } = useContext(SimulationContext) as SimulationContextType;
+  const { lot, lots } = useContext(SimulationContext) as SimulationContextType;
 
 
   const handleClick = (): void => {
@@ -18,7 +18,7 @@ export default function App() {
     <> 
       {!process ? (
         <div className='relative'>
-          {lots.length > 0 ? (
+          {(lot.length > 0 || lots.length > 0) ? (
             <button 
               className='absolute left-0 px-8 py-3 text-sm font-bold text-white bg-blue-500 top-10'
               onClick={ handleClick}
