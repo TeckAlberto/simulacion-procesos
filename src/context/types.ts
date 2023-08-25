@@ -1,5 +1,5 @@
 export type Lot = {
-    id: `${string}-${string}-${string}-${string}` | undefined
+    id: number
     name: string | undefined
     operation: string | undefined
     val1: number

@@ -6,6 +6,7 @@ export default function Process() {
 
   const { lot, setLot, lots, setLots } = useContext(SimulationContext) as SimulationContextType
   const [ errors, setErrors ] = useState<Array<string>>([])
+  const [ count, setCount ] = useState<number>(1)
 
   const nameRef: RefObject<HTMLInputElement> = createRef()
   const operationRef: RefObject<HTMLSelectElement> = createRef()
@@ -13,7 +14,7 @@ export default function Process() {
   const val1Ref: RefObject<HTMLInputElement> = createRef()
   const val2Ref: RefObject<HTMLInputElement> = createRef()
 
-  console.log(lot.length)
+  
   const handleSubmitProcess = (e: React.FormEvent<HTMLFormElement>): void => {
       e.preventDefault()
       
@@ -31,7 +32,7 @@ export default function Process() {
       }
 
       const lotData: Lot = {
-        id: crypto.randomUUID(),
+        id: count,
         name: nameRef.current?.value.toString(),
         operation: operationRef.current?.value.toString(),
         val1: Number(val1Ref.current?.value),
@@ -39,14 +40,16 @@ export default function Process() {
         time: Number(timeRef.current?.value),
       }
       
-      setErrors([])
-      setLot([...lot,lotData])
+      setCount(count + 1)
+      const updatedLot: Array<Lot> = [...lot, lotData];
+      setLot(updatedLot);
 
-      if(lot.length >= 4) {
-        
-        setLots([...lots, lot])
-        setLot([])
+      if (updatedLot.length >= 4) {
+        // Move the accumulated items to the lots array
+        setLots([...lots, updatedLot]);
+        setLot([]);
       }
+      
       nameRef.current!.value = '';
       operationRef.current!.value = '';
       val1Ref.current!.value = '';
