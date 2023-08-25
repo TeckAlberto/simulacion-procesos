@@ -13,7 +13,7 @@ export default function Process() {
   const val1Ref: RefObject<HTMLInputElement> = createRef()
   const val2Ref: RefObject<HTMLInputElement> = createRef()
 
-  
+  console.log(lot.length)
   const handleSubmitProcess = (e: React.FormEvent<HTMLFormElement>): void => {
       e.preventDefault()
       
@@ -47,6 +47,11 @@ export default function Process() {
         setLots([...lots, lot])
         setLot([])
       }
+      nameRef.current!.value = '';
+      operationRef.current!.value = '';
+      val1Ref.current!.value = '';
+      val2Ref.current!.value = '';
+      timeRef.current!.value = '';
       return
   }
 
