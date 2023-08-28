@@ -4,10 +4,8 @@ import { SimulationContextType, Lot } from '../context/types'
 import Error from './Error'
 export default function Process() {
 
-  const { lot, setLot, lots, setLots } = useContext(SimulationContext) as SimulationContextType
+  const { lot, setLot, lots, setLots, count, setCount } = useContext(SimulationContext) as SimulationContextType
   const [ errors, setErrors ] = useState<Array<string>>([])
-  const [ count, setCount ] = useState<number>(1)
-
   const nameRef: RefObject<HTMLInputElement> = createRef()
   const operationRef: RefObject<HTMLSelectElement> = createRef()
   const timeRef: RefObject<HTMLInputElement> = createRef()
@@ -31,6 +29,8 @@ export default function Process() {
         return;
       }
 
+      
+      setCount(count + 1)
       const lotData: Lot = {
         id: count,
         name: nameRef.current?.value.toString(),
@@ -40,7 +40,7 @@ export default function Process() {
         time: Number(timeRef.current?.value),
       }
       
-      setCount(count + 1)
+      
       const updatedLot: Array<Lot> = [...lot, lotData];
       setLot(updatedLot);
 
@@ -61,8 +61,8 @@ export default function Process() {
   
   
   return (
-    <div className="w-1/2 p-4 mx-auto mt-10 bg-white rounded-lg shadow-lg">
-      <form className='' noValidate onSubmit={handleSubmitProcess}>
+    <main className="w-2/3 mx-auto mt-10">
+      <form className='p-4 mx-auto bg-white rounded-lg shadow-lg lg:w-2/3' noValidate onSubmit={handleSubmitProcess}>
 
         <h2 className='mb-5 text-4xl font-bold text-center text-violet-400'>Lote: {lots.length + 1}</h2>
 
@@ -154,6 +154,6 @@ export default function Process() {
         
 
       </form>
-    </div>
+    </main>
   )
 }

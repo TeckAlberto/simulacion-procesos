@@ -13,6 +13,8 @@ export function SimulationProvider({ children }: Props) {
     const [ lot, setLot ] = useState<Array<Lot>>([])
     const [ lots, setLots ] = useState<Array<Array<Lot>>>([])
     const [ timeGlobal, setTimeGlobal ] = useState<boolean>(false)
+  const [ count, setCount ] = useState<number>(0)
+
 
   
     return (
@@ -24,7 +26,9 @@ export function SimulationProvider({ children }: Props) {
             lots, 
             setLots, 
             timeGlobal, 
-            setTimeGlobal
+            setTimeGlobal,
+            count, 
+            setCount
           }}
         >
           {children}
