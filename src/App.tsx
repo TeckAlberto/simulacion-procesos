@@ -2,16 +2,16 @@ import { useContext, useState } from 'react';
 import { SimulationContext } from './context/SimulationProvider';
 import { SimulationContextType } from './context/types';
 import Process from './components/Process';
-import Time from './components/Time';
+import Processes from './components/Processes';
 
 export default function App() {
   const [process, setProcess] = useState(false);
-  //const [error, setError] = useState(false);
-  const { lot, lots, count } = useContext(SimulationContext) as SimulationContextType;
+  const { lot, lots, count, startTimer, setIntervalId } = useContext(SimulationContext) as SimulationContextType;
 
 
   const handleClick = (): void => {
     setProcess(true)
+    setIntervalId(startTimer())
   }
 
 
@@ -30,12 +30,7 @@ export default function App() {
 
             <p className='absolute block w-full px-8 py-3 text-sm font-bold text-center text-white bg-green-700 md:w-auto md:right-0 top-20'>Procesos: {count}  </p>
 
-          <div>
-            <Time
-              timeNumber={12}
-              message='Hola mundo'
-            />
-          </div>
+          
 
           <div className='flex flex-col items-center justify-center h-screen p-5 bg-gray-100 lg:flex-row'>
             <h1 className="mt-10 text-4xl md:mt-0 md:mx-auto lg:w-1/3 text-bond">Procesamiento por lotes</h1>
@@ -43,7 +38,7 @@ export default function App() {
           </div>
         </div>
       ) : (
-        <h1 className='text-4xl'>Procesos</h1>
+        <Processes/>
       )}
     </>
   );

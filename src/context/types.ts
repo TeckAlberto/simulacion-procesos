@@ -15,7 +15,12 @@ export type SimulationContextType = {
     timeGlobal: boolean
     setTimeGlobal: (value: boolean) => void,
     count: number,
-    setCount: (value: number) => void
+    setCount: (value: number) => void,
+    time: number,
+    startTimer: () => number,
+    formatTime: (value: number) => string,
+    intervalId: number | null,
+    setIntervalId: (value: number) => void
 }
 
 export type TimeType = {
